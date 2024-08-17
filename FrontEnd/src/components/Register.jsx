@@ -6,7 +6,7 @@ const Register = () => {
   const nameElement = useRef();
   const emailElement = useRef();
   const passwordElement = useRef();
-  const {url} = useOutletContext();
+  const {userURL} = useOutletContext();
 
   const handleSubmit = async(event) => {
     event.preventDefault();
@@ -14,7 +14,7 @@ const Register = () => {
     const email = emailElement.current.value;
     const password = passwordElement.current.value;
 
-    const res = await axios.post(`${url}/register`,{name,email,password});
+    const res = await axios.post(`${userURL}/register`,{name,email,password}, { withCredentials: true });
     
     console.log(res.data);
   }

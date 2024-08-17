@@ -7,6 +7,11 @@ const postSchema = new mongoose.Schema({
     },
     content:{
         type:String,
+        required:true,
+    },
+    userEmail:{
+        type:String,
+        required:true,
     },
     likes:[
         {

@@ -21,7 +21,6 @@ router.post('/register',async (req,res)=>{
     if(user){
         return res.status(409).json({error:"User already exists"});
     } 
-
     bcrypt.genSalt(10, function(err, salt) {
         bcrypt.hash(password, salt, async function(err, hash) {
             
@@ -62,21 +61,5 @@ router.get('/logout',(req,res) => {
     return res.status(200).json({success:"Logged out Successfully"});
 });
 
-//middleware to check if user is Logged in or not
-const isLoggedIn = (req,res,next) => {
-    if(req.cookies.token === "") 
-        return res.status(401).json({error:"You need to be Logged in"});
-    else{
-        let data = jwt.verify(req.cookies.token,process.env.key);
-        req.user = data;
-    }
-    next();
-
-}
-
-// app.get('/profile',isLoggedIn,async(req,res)=> {
-//     const user = await userModel.findOne({_id:req.body.userid});
-
-// });
 
 module.exports = router;

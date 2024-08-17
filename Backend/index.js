@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const userRoute = require('./routes/userRoute');
-const postModel = require('./models/postModel');
+const postRoute = require('./routes/postRoute');
 dotenv.config();
 
 mongoose.connect(process.env.DBURL).then(()=>console.log("Database connected"));
@@ -20,6 +20,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use('/api/users',userRoute);
+app.use('/api/posts',postRoute);
 
 
 

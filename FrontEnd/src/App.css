@@ -13,3 +13,23 @@
     justify-content: center;
     align-items: center;
 }
+
+.card-title{
+    color:rgb(14, 113, 212);
+}
+.like {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Align like count and button closely */
+    gap: 2px; /* Adjust this value to control space between like count and button */
+}
+
+.like-dlt {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Align the delete button with the like button */
+}
+.likecount{
+    max-height: 7px;
+}

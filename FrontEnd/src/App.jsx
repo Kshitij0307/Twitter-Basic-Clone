@@ -1,19 +1,17 @@
 import { Outlet } from "react-router-dom";
 import "./App.css";
 import Container from "./components/Container";
-import Login from "./components/Login";
 import Navbar from "./components/Navbar";
-import Register from "./Register";
 
-const url = 'http://localhost:8000/api/users'
+const userURL = "http://localhost:8000/api/users";
+const postURL = "http://localhost:8000/api/posts";
 
 function App() {
-
   return (
     <>
       <Navbar></Navbar>
       <Container>
-        <Outlet context={{url}}></Outlet>
+        <Outlet context={{ userURL, postURL }}></Outlet>
       </Container>
     </>
   );

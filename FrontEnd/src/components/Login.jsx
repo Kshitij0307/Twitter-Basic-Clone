@@ -5,7 +5,7 @@ import { useOutletContext } from "react-router-dom";
 const Login = () => {
   const emailElement = useRef();
   const passwordElement = useRef();
-  const {url} = useOutletContext();
+  const {userURL} = useOutletContext();
 
   const handleSubmit = async(event) => {
     event.preventDefault();
@@ -13,7 +13,7 @@ const Login = () => {
     const password = passwordElement.current.value;
     
 
-    const res = await axios.post(`${url}/login`,{email,password}, { withCredentials: true });
+    const res = await axios.post(`${userURL}/login`,{email,password}, { withCredentials: true });
     console.log(res.data);
   }
 
