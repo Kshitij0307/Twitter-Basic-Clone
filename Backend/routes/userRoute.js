@@ -2,16 +2,17 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const userModel = require('../models/userModel');
-const dotenv = require('dotenv');
-dotenv.config();
 const router = express.Router();
 
-router.get('/getUser/:email',async (req,res)=> {
-    console.log(req.cookies.token);
-    const user = await userModel.findOne({email:req.params.email});
-    res.send(user);
+router.get('/getUser/:id',async (req,res)=> {
+    const user = await userModel.findOne({_id:req.params.id});
+    return res.status(200).json(user);
 });
 
+router.get('/getUsers' , async (req,res)=>{
+    const allUsers = await userModel.find({});
+    return res.status(200).json(allUsers);
+})
 
 router.post('/register',async (req,res)=>{
     const {name,email,password} = req.body;
@@ -71,7 +72,11 @@ const isLoggedIn = (req,res,next) => {
     }
     next();
 
-
 }
+
+// app.get('/profile',isLoggedIn,async(req,res)=> {
+//     const user = await userModel.findOne({_id:req.body.userid});
+
+// });
 
 module.exports = router;
